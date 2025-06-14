@@ -544,7 +544,7 @@ button {
 .header .nav-inner ul li a {
   font-size: 40px;
   text-transform: capitalize;
-  color: var(--blue-dark);
+  color: #fff;
   display: block;
   font-weight: 500;
   padding: 8px 15px;
