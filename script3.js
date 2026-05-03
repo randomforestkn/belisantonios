@@ -1,6 +1,8 @@
 var w = c.width = window.innerWidth,
     h = c.height = window.innerHeight,
     ctx = c.getContext( '2d' ),
+    prefersReducedMotion = window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches,
+    animationFrameId = null,
 
     opts = {
 
@@ -39,7 +41,13 @@ ctx.fillRect( 0, 0, w, h );
 
 function loop() {
 
-  window.requestAnimationFrame( loop );
+  if( prefersReducedMotion )
+    return;
+
+  animationFrameId = window.requestAnimationFrame( loop );
+
+  if( document.hidden )
+    return;
 
   ++tick;
 
@@ -109,7 +117,20 @@ Line.prototype.step = function(){
   if( Math.random() < opts.sparkChance )
     ctx.fillRect( opts.cx + ( this.x + x ) * opts.len + Math.random() * opts.sparkDist * ( Math.random() < .5 ? 1 : -1 ) - opts.sparkSize / 2, opts.cy + ( this.y + y ) * opts.len + Math.random() * opts.sparkDist * ( Math.random() < .5 ? 1 : -1 ) - opts.sparkSize / 2, opts.sparkSize, opts.sparkSize )
 }
-loop();
+
+if( !prefersReducedMotion )
+  loop();
+
+document.addEventListener( 'visibilitychange', function(){
+
+  if( document.hidden && animationFrameId !== null ){
+    window.cancelAnimationFrame( animationFrameId );
+    animationFrameId = null;
+  }
+  else if( !document.hidden && animationFrameId === null && !prefersReducedMotion ){
+    loop();
+  }
+});
 
 window.addEventListener( 'resize', function(){
 

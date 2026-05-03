@@ -1,10 +1,13 @@
 window.addEventListener('load', () => {
   document.querySelector(".main").classList.remove("hidden");
   document.querySelector(".home-section").classList.add("active");
-  document.querySelector(".page-loader").classList.add("fade-out");
-  setTimeout(() => {
-    document.querySelector(".page-loader").style.display = "none";
-  },600);
+  const pageLoader = document.querySelector(".page-loader");
+  if (pageLoader) {
+    pageLoader.classList.add("fade-out");
+    setTimeout(() => {
+      pageLoader.style.display = "none";
+    },600);
+  }
 });
 
 const nav_toggler = document.querySelector('.nav-toggler');
@@ -20,6 +23,9 @@ function hide_selection() {
 
 function toggle_navbar() {
   document.querySelector('.header').classList.toggle("active");
+  const isOpen = document.querySelector('.header').classList.contains("active");
+  nav_toggler.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  nav_toggler.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
 }
 
 document.addEventListener('click', (e) => {

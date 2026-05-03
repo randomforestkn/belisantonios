@@ -19,8 +19,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: none;
   color: var(--main-color);
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--green-yellow);
+  outline-offset: 4px;
 }
 
 ::before,
