@@ -812,6 +812,13 @@ button {
   margin: 20px 0;
 }
 
+.portfolio-item-summary {
+  margin: -8px 0 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
 .portfolio-item-details {
   display: none;
 }
@@ -894,12 +901,16 @@ button {
 }
 
 .pp-body .general-info li span {
-  font-weight: 300;
+  font-weight: 700;
 }
 
 .pp-body .general-info li a {
   text-transform: lowercase;
   color: var(--main-color);
+}
+
+.pp-body .general-info .project-cta {
+  margin-top: 18px;
 }
 
 .contact-form,
