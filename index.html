@@ -116,6 +116,7 @@
      <link rel="stylesheet" href="style.css">
      <link rel="stylesheet" href="style2.css">
      <link rel="stylesheet" href="style_mobile.css">
+     <link rel="stylesheet" href="premium.css">
   </head>
 
     <body>
@@ -200,6 +201,14 @@
 
         <!-- home section -->
         <section class="home-section align-items-center" id="home">
+            <div class="hero-atmosphere" aria-hidden="true">
+              <span class="hero-grid"></span>
+              <span class="hero-particle particle-a"></span>
+              <span class="hero-particle particle-b"></span>
+              <span class="hero-particle particle-c"></span>
+              <span class="hero-wireframe wireframe-a"></span>
+              <span class="hero-wireframe wireframe-b"></span>
+            </div>
             <div class="container">
                 <div class="row align-items-center">
                   <div class="home-text">
@@ -207,6 +216,12 @@
                     <h1 class="name_a">Antonios Belis</h1>
                     <h2>Full-Stack Developer Building Web & Mobile Applications</h2>
                     <p>I build practical, maintainable web and mobile applications using Flutter, JavaScript, PHP/Laravel, Python and modern backend systems.</p>
+                    <div class="tech-orbit" aria-hidden="true">
+                      <span>Flutter</span>
+                      <span>Laravel</span>
+                      <span>Python</span>
+                      <span>JavaScript</span>
+                    </div>
                     <a href="#portfolio" class="btn link-item">View Projects</a>
                     <a href="#contact" class="btn link-item">Contact Me</a>
 
@@ -809,6 +824,14 @@
             glare: true,
             "max-glare": 0.3,
     	    });
+
+          VanillaTilt.init(document.querySelectorAll(".portfolio-item"), {
+            max: 8,
+            speed: 500,
+            scale: 1.015,
+            glare: true,
+            "max-glare": 0.16,
+          });
 
 
 

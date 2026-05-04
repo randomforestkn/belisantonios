@@ -1,0 +1,150 @@
+/* Final visual layer for the premium 3D portfolio design. */
+:root {
+  --space-ink: #050712;
+  --space-navy: #080d1f;
+  --glass-surface: rgba(9, 17, 37, 0.58);
+  --glass-border: rgba(156, 220, 255, 0.24);
+  --cyan-glow: #42e8ff;
+  --violet-glow: #a66cff;
+  --soft-text: rgba(236, 246, 255, 0.82);
+  --muted-text: rgba(219, 232, 255, 0.68);
+  --backdrop-filter-blur: blur(20px) saturate(150%);
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(66, 232, 255, 0.2), transparent 28rem),
+    radial-gradient(circle at 82% 12%, rgba(166, 108, 255, 0.2), transparent 30rem),
+    radial-gradient(circle at 48% 92%, rgba(86, 132, 255, 0.13), transparent 26rem),
+    linear-gradient(135deg, var(--space-ink), var(--space-navy) 50%, #04050d);
+  letter-spacing: 0;
+}
+
+#c {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.34;
+  pointer-events: none;
+  z-index: -3;
+  mix-blend-mode: screen;
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(12, 22, 48, 0.72), rgba(8, 12, 27, 0.54)),
+    radial-gradient(circle at top left, rgba(66, 232, 255, 0.12), transparent 22rem);
+  border-color: var(--glass-border);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.square-card,
+.ball-movement {
+  position: fixed;
+  pointer-events: none;
+  z-index: -2;
+  background: transparent;
+}
+
+.square {
+  width: 42px;
+  height: 42px;
+  background: rgba(66, 232, 255, 0.06);
+  border: 1px solid rgba(66, 232, 255, 0.38);
+  border-radius: 10px;
+  box-shadow: inset 0 0 18px rgba(66, 232, 255, 0.18), 0 0 30px rgba(166, 108, 255, 0.2);
+}
+
+.ball-movement::before {
+  display: none;
+}
+
+.ball,
+.bg-circles .circle-1,
+.bg-circles .circle-2,
+.bg-circles .circle-3,
+.bg-circles .circle-4 {
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.9), rgba(66, 232, 255, 0.45) 22%, rgba(166, 108, 255, 0.2) 58%, rgba(66, 232, 255, 0.04) 72%);
+  border: 1px solid rgba(170, 230, 255, 0.28);
+  box-shadow:
+    inset -12px -18px 26px rgba(4, 6, 18, 0.42),
+    0 0 28px rgba(66, 232, 255, 0.24),
+    0 0 58px rgba(166, 108, 255, 0.16);
+}
+
+.bg-circles .circle-1 {
+  height: 42px;
+  width: 42px;
+}
+
+.bg-circles .circle-2 {
+  height: 34px;
+  width: 34px;
+}
+
+.bg-circles .circle-3 {
+  height: 74px;
+  width: 74px;
+  right: -22px;
+  background:
+    linear-gradient(135deg, rgba(66, 232, 255, 0.16), rgba(166, 108, 255, 0.08)),
+    repeating-linear-gradient(60deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 12px);
+}
+
+.bg-circles .circle-4 {
+  height: 32px;
+  width: 32px;
+}
+
+.btn {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04));
+  border-color: rgba(150, 220, 255, 0.32);
+  color: #f7fbff;
+  text-transform: none;
+  backdrop-filter: blur(16px);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  color: #fff;
+  border-color: rgba(66, 232, 255, 0.62);
+  box-shadow:
+    0 0 22px rgba(66, 232, 255, 0.22),
+    0 0 42px rgba(166, 108, 255, 0.13);
+}
+
+.home-img .img-box {
+  background:
+    linear-gradient(var(--space-ink), var(--space-ink)) padding-box,
+    conic-gradient(from 140deg, rgba(66, 232, 255, 0.95), rgba(166, 108, 255, 0.86), rgba(255, 255, 255, 0.45), rgba(66, 232, 255, 0.95)) border-box;
+}
+
+.portfolio-item,
+.pp-content {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--glass-border);
+}
+
+.portfolio-item .btn {
+  width: 100%;
+}
+
+.portfolio-item-summary {
+  color: var(--muted-text);
+}
+
+@media(max-width: 767px) {
+  .portfolio-item {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

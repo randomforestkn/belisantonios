@@ -1,6 +1,7 @@
 window.addEventListener('load', () => {
   document.querySelector(".main").classList.remove("hidden");
   document.querySelector(".home-section").classList.add("active");
+  setupScrollReveal();
   const pageLoader = document.querySelector(".page-loader");
   if (pageLoader) {
     pageLoader.classList.add("fade-out");
@@ -46,6 +47,7 @@ document.addEventListener('click', (e) => {
         document.body.classList.remove("hide-scrolling");
         nav_toggler.classList.remove("hide");
         document.querySelector(".overlay").classList.remove("active");
+        refreshScrollReveal();
     }, 500);
   }
 });
@@ -97,3 +99,53 @@ function portfolioItemDetails(portfolioItem) {
   document.querySelector(".pp-body").innerHTML =
   portfolioItem.querySelector(".portfolio-item-details").innerHTML;
 }
+
+function setupScrollReveal() {
+  const revealItems = document.querySelectorAll(
+    ".home-text, .home-img, .section-title, .about-img, .about-text, .timeline-item, .portfolio-item, .contact-form, .contact-info-item"
+  );
+
+  revealItems.forEach((item, index) => {
+    item.classList.add("reveal");
+    item.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 55}ms`);
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    revealItems.forEach((item) => item.classList.add("in-view"));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16 });
+
+  revealItems.forEach((item) => revealObserver.observe(item));
+  refreshScrollReveal();
+}
+
+function refreshScrollReveal() {
+  requestAnimationFrame(() => {
+    document.querySelectorAll("section.active .reveal").forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) {
+        item.classList.add("in-view");
+      }
+    });
+  });
+}
+
+document.addEventListener("mousemove", (e) => {
+  const card = e.target.closest(".portfolio-item");
+  if (!card) {
+    return;
+  }
+
+  const rect = card.getBoundingClientRect();
+  card.style.setProperty("--glow-x", `${((e.clientX - rect.left) / rect.width) * 100}%`);
+  card.style.setProperty("--glow-y", `${((e.clientY - rect.top) / rect.height) * 100}%`);
+});
