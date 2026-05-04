@@ -804,36 +804,32 @@
         <script type="text/javascript" src="script2.js"></script>
         <script type="text/javascript" src="script3.js"></script>
         <script type="text/javascript">
-    	    VanillaTilt.init(document.querySelectorAll(".link-item"), {
-    	    	max: 25,
-    	    	speed: 400,
-            glare: true,
-            "max-glare": 0.3,
-    	    });
+          if (window.VanillaTilt && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            VanillaTilt.init(document.querySelectorAll(".link-item"), {
+              max: 18,
+              speed: 400,
+              glare: true,
+              "max-glare": 0.22,
+              gyroscope: false,
+            });
 
-          VanillaTilt.init(document.querySelectorAll(".img-box"), {
-    	    	max: 25,
-    	    	speed: 400,
-            glare: false,
-    	    });
+            VanillaTilt.init(document.querySelectorAll(".img-box"), {
+              max: 16,
+              speed: 400,
+              glare: false,
+              gyroscope: false,
+            });
 
-
-          VanillaTilt.init(document.querySelectorAll(".portfolio-item-thumbnail"), {
-    	    	max: 25,
-    	    	speed: 400,
-            glare: true,
-            "max-glare": 0.3,
-    	    });
-
-          VanillaTilt.init(document.querySelectorAll(".portfolio-item"), {
-            max: 8,
-            speed: 500,
-            scale: 1.015,
-            glare: true,
-            "max-glare": 0.16,
-          });
-
-
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+              VanillaTilt.init(document.querySelectorAll(".portfolio-item-thumbnail"), {
+                max: 8,
+                speed: 450,
+                glare: true,
+                "max-glare": 0.16,
+                gyroscope: false,
+              });
+            }
+          }
 
         </script>
 		<script src="https://elfsightcdn.com/platform.js" async></script>
